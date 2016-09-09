@@ -4,6 +4,11 @@ echo "Инсталятор и обновлятор шаблона разрабо
 echo "Vanessa Bootstrap Install or Upgrade"
 echo "подключает bootstrap к текущему репозиторию и обновляет его из ветки master"
 
+# Переходим в каталог GIT если он указан в параметре, если запускать скрипт из каталога git, при получении этого файла возникает ошибка. 
+if [ "$1" ]; then
+    cd $1
+fi
+
 if git rev-parse --git-dir > /dev/null 2>&1; then
   echo "Текущий каталог находится под управлением GIT - доступна возможность инсталяции и обновления"
 else
@@ -65,4 +70,5 @@ git fetch --no-tags vanessa-bootstrap
 echo "Получаю изменения шаблона - без помещения"
 echo "(Для отката используйте команду 'git checkout .')"
 
-git pull --no-tags --no-commit vanessa-bootstrap master
+# Добавляем параметр --allow-unrelated-histories чтобы учесть новое поведение git (воспроизводилось на 2.9.3.windows.1) при слиянии репозиториев 
+git pull --no-tags --no-commit --allow-unrelated-histories vanessa-bootstrap master
