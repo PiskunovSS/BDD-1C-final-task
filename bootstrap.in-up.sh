@@ -71,4 +71,11 @@ echo "Получаю изменения шаблона - без помещени
 echo "(Для отката используйте команду 'git checkout .')"
 
 # Добавляем параметр --allow-unrelated-histories чтобы учесть новое поведение git (воспроизводилось на 2.9.3.windows.1) при слиянии репозиториев 
-git pull --no-tags --no-commit --allow-unrelated-histories vanessa-bootstrap master
+GIT_VER=$(git --version)
+if [[ "$GIT_VER" > "2.9" ]]; then
+    AUH_PARAM="--allow-unrelated-histories" 
+else 
+    AUH_PARAM=""
+fi
+
+git pull --no-tags --no-commit "$AUH_PARAM" vanessa-bootstrap master
