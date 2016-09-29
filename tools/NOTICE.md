@@ -1,0 +1,1 @@
+Обработка "Выгрузка и загрузка данных XML" портирована с сайта ИТС http://its.1c.ru/db/files/1CITS/EXE/EXTREPS/UNIREPS83/UploadToXML/UploadToXML.zip
